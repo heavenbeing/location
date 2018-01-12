@@ -37,12 +37,13 @@ public class ShowLocation extends AppCompatActivity {
         if (provider != null) {
             //限制getLastKnownLocation方法警告
             if (ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION)) {
+                System.out.println("hello");
                 return;
             }
         }
-
     }
 
+    //初始化绑定
     private void init() {
         btn_show = (Button) findViewById(R.id.btn_show_location);
         tv_show = (TextView) findViewById(R.id.tv_location_show);
