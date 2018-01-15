@@ -53,7 +53,9 @@ public class ShowLocation extends AppCompatActivity {
             }
             location = locationManager.getLastKnownLocation(provider);
             if (location != null) {
-                
+                getLocation(location);//得到当前经纬度并开启线程反向地理编码
+            } else {
+                tv_show.setText("暂时无法获得当前位置");
             }
         }
     }
@@ -81,8 +83,8 @@ public class ShowLocation extends AppCompatActivity {
         String latitude = location.getLatitude() + "";
         String longitude = location.getLongitude() + "";
         //百度地图gps反向位置接口
-        String url = "";
-
+        String url = "http://api.map.baidu.com/geocoder/v2/?ak=ZfHtMHY7FGolEirx3yCNjGWzQtyufVWC&callback=renderReverse&location="+latitude+","+longitude+"&output=json&pois=0";
+        new MyAsyncTask(url).execute();
     }
 
     class MyAsyncTask extends AsyncTask<Void, Void, Void> {
